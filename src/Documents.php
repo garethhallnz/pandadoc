@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace PandaDoc;
 
-use PandaDoc\Entity\Document;
+use PandaDoc\Entity\DocumentBuilder;
 
 /**
  * Class Documents.
@@ -87,13 +87,13 @@ class Documents extends PandaDoc
     /**
      * Create Document From a Template.
      *
-     * @param \PandaDoc\Entity\Document $document
+     * @param \PandaDoc\Entity\DocumentBuilder $document
      *
      * @return \stdClass
      *
      * @see https://developers.pandadoc.com/v1/reference#new-document
      */
-    public function createFromTemplate(Document $document): \stdClass
+    public function createFromTemplate(DocumentBuilder $document): \stdClass
     {
         return $this->request('POST', self::RESOURCE, ['json' => $document->getData()]);
     }
@@ -101,13 +101,13 @@ class Documents extends PandaDoc
     /**
      * Create Document From a Pdf.
      *
-     * @param \PandaDoc\Entity\Document $document
+     * @param \PandaDoc\Entity\DocumentBuilder $document
      *
      * @return \stdClass
      *
      * @see https://developers.pandadoc.com/v1/reference#new-document
      */
-    public function createFromPdf(Document $document): \stdClass
+    public function createFromPdf(DocumentBuilder $document): \stdClass
     {
         // @todo
     }
