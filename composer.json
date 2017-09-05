@@ -1,0 +1,28 @@
+{
+    "name": "garethhallnz/pandadoc",
+    "type": "library",
+    "description": "PandaDoc SDK",
+    "keywords": [
+        "PandaDocs"
+    ],
+    "config": {
+        "php": ">=7.0"
+    },
+    "homepage": "https://github.com/garethhallnz/pandadoc",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "gareth Hall",
+            "email": "gareth@communica.co.nz"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "PandaDoc\\" : "" }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "thinkshout/mailchimp-api-php": "^1.0"
+    },
+    "require-dev": {},
+    "extra": {}
+}
