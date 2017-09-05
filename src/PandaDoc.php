@@ -63,7 +63,7 @@ abstract class PandaDoc
           ],
         ];
 
-        $options = array_merge($headers, $options);
+        $options = array_merge_recursive($headers, $options);
 
         if (!empty($options['query'])) {
             $options['query'] = http_build_query(['query']);

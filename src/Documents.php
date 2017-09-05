@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace PandaDoc;
 
+use PandaDoc\Entity\Document;
+
 /**
  * Class Documents.
  *
@@ -85,18 +87,31 @@ class Documents extends PandaDoc
     /**
      * Create Document From a Template.
      *
-     * @param string $templateID
-     * @param array $data
+     * @param \PandaDoc\Entity\Document $document
      *
      * @return \stdClass
      *
      * @see https://developers.pandadoc.com/v1/reference#new-document
      */
-    public function createFromTemplate(string $templateID, array $data): \stdClass
+    public function createFromTemplate(Document $document): \stdClass
+    {
+        return $this->request('POST', self::RESOURCE, ['json' => $document->getData()]);
+    }
+
+    /**
+     * Create Document From a Pdf.
+     *
+     * @param \PandaDoc\Entity\Document $document
+     *
+     * @return \stdClass
+     *
+     * @see https://developers.pandadoc.com/v1/reference#new-document
+     */
+    public function createFromPdf(Document $document): \stdClass
     {
         // @todo
-        return $this->request('POST', self::RESOURCE, $data);
     }
+
 
     /**
      * Send Document.
@@ -111,8 +126,16 @@ class Documents extends PandaDoc
      */
     public function send(string $id, string $message, $silent = false): \stdClass
     {
-        // @todo
-        return $this->request('POST', self::RESOURCE . "/{$id}/send");
+        return $this->request(
+            'POST',
+            self::RESOURCE . "/{$id}/send",
+            [
+            'json' => [
+              'message' => $message,
+              'silent' => $silent,
+            ]
+            ]
+        );
     }
 
     /**
@@ -128,9 +151,15 @@ class Documents extends PandaDoc
      */
     public function share(string $id, string $recipient, $lifetime): \stdClass
     {
-        // @todo
-        return $this->request('POST', self::RESOURCE . "/{$id}/session");
+        return $this->request(
+            'POST',
+            self::RESOURCE . "/{$id}/session",
+            [
+            'json' => [
+              'recipient' => $recipient,
+              'lifetime' => $lifetime,
+            ]
+            ]
+        );
     }
-
-
 }
