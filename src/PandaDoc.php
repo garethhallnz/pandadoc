@@ -38,13 +38,17 @@ abstract class PandaDoc
      * PandaDoc constructor.
      *
      * @param string $token
-     * @param array $http_options
+     * @param Client $client
      */
-    public function __construct($token = '', array $http_options = [])
+    public function __construct($token = '', Client $client = null)
     {
         $this->token = $token;
 
-        $this->client = new Client($http_options);
+        if (empty($client)) {
+            $this->client = new Client();
+        } else {
+            $this->client = $client;
+        }
     }
 
     /**
