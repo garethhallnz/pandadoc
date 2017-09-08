@@ -1,5 +1,8 @@
 # PHP library for PandaDoc's API
 
+[![Build Status](https://travis-ci.org/thephpleague/omnipay-paymentexpress.png?branch=master)
+[![License](https://poser.pugx.org/garethhallnz/pandadoc/license)](https://packagist.org/packages/garethhallnz/pandadoc)
+
 This library provides convenient wrapper functions for PandaDoc's REST API.
 The API is [documented here](https://developers.pandadoc.com/).
 
