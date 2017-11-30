@@ -92,7 +92,7 @@ abstract class PandaDoc
         try {
             $response = $this->client->request($method, $uri, $options);
             $data = $response->getBody();
-            return json_decode($data->getContents());
+            return $data->json();
         } catch (RequestException $e) {
             $response = $e->getResponse();
 
