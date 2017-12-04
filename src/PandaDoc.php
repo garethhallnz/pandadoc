@@ -90,8 +90,10 @@ abstract class PandaDoc
     public function handleRequest(string $method, string $uri, array $options = []): \stdClass
     {
         try {
-            $response = $this->client->request($method, $uri, $options);
-            return $response->json();
+          $request = $this->client->createRequest($method, $uri, $options);
+          $response = $this->client->send($request);
+          $data = $response->getBody();
+          return json_decode($data->getContents());
         } catch (RequestException $e) {
             $response = $e->getResponse();
 
