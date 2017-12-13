@@ -3,7 +3,7 @@
 namespace PandaDoc;
 
 use \Exception;
-use Psr\Http\Message\ResponseInterface;
+use \GuzzleHttp\Message\ResponseInterface;
 
 /**
  * Custom PandaDoc API exception.
