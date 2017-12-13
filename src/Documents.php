@@ -169,7 +169,7 @@ class Documents extends PandaDoc
     public function addData($client_id, $client_secret, $refresh_token)
     {
 
-        return $this->request_token(
+        return $this->requestToken(
 
             'POST',
             "/oauth2/access_token",

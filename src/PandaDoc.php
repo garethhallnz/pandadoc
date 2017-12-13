@@ -84,7 +84,7 @@ abstract class PandaDoc
    * @param array $options
    * @return mixed
    */
-    public function request_token(string $method, string $resource, array $options = []): \stdClass
+    public function requestToken(string $method, string $resource, array $options = []): \stdClass
     {
         $headers = [
         'headers' => [
