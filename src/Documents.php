@@ -15,7 +15,7 @@ class Documents extends PandaDoc
   /**
    * REST resource.
    */
-  const RESOURCE = '/documents';
+    const RESOURCE = '/documents';
 
   /**
    * List Documents.
@@ -33,10 +33,10 @@ class Documents extends PandaDoc
    *
    * @see https://developers.pandadoc.com/v1/reference#list-documents
    */
-  public function list(array $filters = []): \stdClass
-  {
-    return $this->request('GET', "/public/v1" . self::RESOURCE, $filters);
-  }
+    public function list(array $filters = []): \stdClass
+    {
+        return $this->request('GET', "/public/v1" . self::RESOURCE, $filters);
+    }
 
   /**
    * Document Details.
@@ -47,10 +47,10 @@ class Documents extends PandaDoc
    *
    * @see https://developers.pandadoc.com/v1/reference#document-details
    */
-  public function details(string $id): \stdClass
-  {
-    return $this->request('GET', "/public/v1" . self::RESOURCE . "/{$id}/details");
-  }
+    public function details(string $id): \stdClass
+    {
+        return $this->request('GET', "/public/v1" . self::RESOURCE . "/{$id}/details");
+    }
 
   /**
    * Document Status.
@@ -61,10 +61,10 @@ class Documents extends PandaDoc
    *
    * @see https://developers.pandadoc.com/v1/reference#document-status
    */
-  public function status(string $id): \stdClass
-  {
-    return $this->request('GET', "/public/v1" . self::RESOURCE . "/{$id}");
-  }
+    public function status(string $id): \stdClass
+    {
+        return $this->request('GET', "/public/v1" . self::RESOURCE . "/{$id}");
+    }
 
   /**
    * Download Document.
@@ -75,14 +75,14 @@ class Documents extends PandaDoc
    * @see Documents::document()
    * @see https://developers.pandadoc.com/v1/reference#download-document
    */
-  public function download(string $id, string $destination)
-  {
-    $document = $this->details($id);
+    public function download(string $id, string $destination)
+    {
+        $document = $this->details($id);
 
-    $path = "{$destination}/{$document->name}.pdf";
+        $path = "{$destination}/{$document->name}.pdf";
 
-    $this->request('GET', "/public/v1" . self::RESOURCE . "/{$id}/download", ['sink' => $path]);
-  }
+        $this->request('GET', "/public/v1" . self::RESOURCE . "/{$id}/download", ['sink' => $path]);
+    }
 
   /**
    * Create Document From a Template.
@@ -93,10 +93,10 @@ class Documents extends PandaDoc
    *
    * @see https://developers.pandadoc.com/v1/reference#new-document
    */
-  public function createFromTemplate(DocumentBuilder $document): \stdClass
-  {
-    return $this->request('POST', "/public/v1" .self::RESOURCE , ['json' => $document->getData()]);
-  }
+    public function createFromTemplate(DocumentBuilder $document): \stdClass
+    {
+        return $this->request('POST', "/public/v1" .self::RESOURCE, ['json' => $document->getData()]);
+    }
 
   /**
    * Create Document From a Pdf.
@@ -107,10 +107,10 @@ class Documents extends PandaDoc
    *
    * @see https://developers.pandadoc.com/v1/reference#new-document
    */
-  public function createFromPdf(DocumentBuilder $document): \stdClass
-  {
-    // @todo
-  }
+    public function createFromPdf(DocumentBuilder $document): \stdClass
+    {
+      // @todo
+    }
 
 
   /**
@@ -124,19 +124,19 @@ class Documents extends PandaDoc
    *
    * @see https://developers.pandadoc.com/v1/reference#send-document
    */
-  public function send(string $id, string $message, $silent = false): \stdClass
-  {
-    return $this->request(
-        'POST',
-        "/public/v1" . self::RESOURCE . "/{$id}/send",
-        [
+    public function send(string $id, string $message, $silent = false): \stdClass
+    {
+        return $this->request(
+            'POST',
+            "/public/v1" . self::RESOURCE . "/{$id}/send",
+            [
             'json' => [
                 'message' => $message,
                 'silent' => $silent,
             ]
-        ]
-    );
-  }
+            ]
+        );
+    }
 
   /**
    * Create a Document Link.
@@ -149,30 +149,31 @@ class Documents extends PandaDoc
    *
    * @see https://developers.pandadoc.com/v1/reference#link-to-a-document
    */
-  public function share(string $id, string $recipient, $lifetime): \stdClass
-  {
-    return $this->request(
-        'POST',
-        "/public/v1" . self::RESOURCE . "/{$id}/session",
-        [
+    public function share(string $id, string $recipient, $lifetime): \stdClass
+    {
+        return $this->request(
+            'POST',
+            "/public/v1" . self::RESOURCE . "/{$id}/session",
+            [
             'json' => [
                 'recipient' => $recipient,
                 'lifetime' => $lifetime,
             ]
-        ]
-    );
-  }
+            ]
+        );
+    }
 
   /**
    * Add data for refresh token
    */
-  public function addData($client_id,$client_secret,$refresh_token){
+    public function addData($client_id, $client_secret, $refresh_token)
+    {
 
-    return $this->request_token(
+        return $this->request_token(
 
-        'POST',
-        "/oauth2/access_token",
-        [
+            'POST',
+            "/oauth2/access_token",
+            [
             'body' => [
                 'grant_type'=>'refresh_token',
                 'client_id'=>$client_id,
@@ -180,8 +181,7 @@ class Documents extends PandaDoc
                 'refresh_token'=>$refresh_token,
                 'scope'=>'read+write',
             ]
-        ]
-    );
-  }
-
+            ]
+        );
+    }
 }

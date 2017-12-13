@@ -18,21 +18,21 @@ abstract class PandaDoc
    *
    * @var string
    */
-  protected $endpoint = 'https://api.pandadoc.com';
+    protected $endpoint = 'https://api.pandadoc.com';
 
   /**
    * API access token.
    *
    * @var string
    */
-  protected $token;
+    protected $token;
 
   /**
    * Guzzle client.
    *
    * @var Client
    */
-  protected $client;
+    protected $client;
 
   /**
    * PandaDoc constructor.
@@ -40,16 +40,16 @@ abstract class PandaDoc
    * @param string $token
    * @param Client $client
    */
-  public function __construct($token = '', Client $client = null)
-  {
-    $this->token = $token;
+    public function __construct($token = '', Client $client = null)
+    {
+        $this->token = $token;
 
-    if (empty($client)) {
-      $this->client = new Client();
-    } else {
-      $this->client = $client;
+        if (empty($client)) {
+            $this->client = new Client();
+        } else {
+            $this->client = $client;
+        }
     }
-  }
 
   /**
    * Makes a request to the PandaDoc API.
@@ -59,22 +59,22 @@ abstract class PandaDoc
    * @param array $options
    * @return mixed
    */
-  public function request(string $method, string $resource, array $options = []): \stdClass
-  {
-    $headers = [
+    public function request(string $method, string $resource, array $options = []): \stdClass
+    {
+        $headers = [
         'headers' => [
             'Authorization' => 'Bearer ' . $this->token,
         ],
-    ];
+        ];
 
-    $options = array_merge_recursive($headers, $options);
+        $options = array_merge_recursive($headers, $options);
 
-    if (!empty($options['query'])) {
-      $options['query'] = http_build_query(['query']);
+        if (!empty($options['query'])) {
+            $options['query'] = http_build_query(['query']);
+        }
+
+        return $this->handleRequest($method, $this->endpoint . $resource, $options);
     }
-
-    return $this->handleRequest($method, $this->endpoint . $resource, $options);
-  }
 
   /**
    * Makes a request for token update to the PandaDoc API.
@@ -84,22 +84,22 @@ abstract class PandaDoc
    * @param array $options
    * @return mixed
    */
-  public function request_token(string $method, string $resource, array $options = []): \stdClass
-  {
-    $headers = [
+    public function request_token(string $method, string $resource, array $options = []): \stdClass
+    {
+        $headers = [
         'headers' => [
             'Content-type' => 'application/x-www-form-urlencoded',
         ],
-    ];
+        ];
 
-    $options = array_merge_recursive($headers, $options);
+        $options = array_merge_recursive($headers, $options);
 
-    if (!empty($options['query'])) {
-      $options['query'] = http_build_query(['query']);
+        if (!empty($options['query'])) {
+            $options['query'] = http_build_query(['query']);
+        }
+
+        return $this->handleRequest($method, $this->endpoint . $resource, $options);
     }
-
-    return $this->handleRequest($method, $this->endpoint . $resource, $options);
-  }
 
   /**
    * Makes a request to the PandaDoc API using the Guzzle HTTP client.
@@ -112,17 +112,17 @@ abstract class PandaDoc
    *
    * @see PandaDoc::request()
    */
-  public function handleRequest(string $method, string $uri, array $options = []): \stdClass
-  {
-    try {
-      $request = $this->client->createRequest($method, $uri, $options);
-      $response = $this->client->send($request);
-      $data = $response->getBody();
-      return json_decode($data->getContents());
-    } catch (RequestException $e) {
-      $response = $e->getResponse();
+    public function handleRequest(string $method, string $uri, array $options = []): \stdClass
+    {
+        try {
+            $request = $this->client->createRequest($method, $uri, $options);
+            $response = $this->client->send($request);
+            $data = $response->getBody();
+            return json_decode($data->getContents());
+        } catch (RequestException $e) {
+            $response = $e->getResponse();
 
-      throw new PandaDocAPIException($response, $e);
+            throw new PandaDocAPIException($response, $e);
+        }
     }
-  }
 }
