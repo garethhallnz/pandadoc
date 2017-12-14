@@ -81,7 +81,7 @@ class Documents extends PandaDoc
 
 //        $path = "{$destination}/{$document->name}.pdf";
 
-      return $this->request('GET', "/public/v1" . self::RESOURCE . "/{$id}/download", ['save_to' => $destination]);
+        return $this->request('GET', "/public/v1" . self::RESOURCE . "/{$id}/download", ['save_to' => $destination]);
     }
 
   /**
