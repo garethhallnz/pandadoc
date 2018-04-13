@@ -2,7 +2,7 @@
 
 namespace PandaDoc\Tests;
 
-use GuzzleHttp\Message\Response;
+use GuzzleHttp\Psr7\Response;
 
 /**
  * Class TestResponse
