@@ -5,7 +5,7 @@ namespace PandaDoc\Entity;
 /**
  * Class DocumentBuilder
  *
- * @package PandaDoc\Builders
+ * @package PandaDoc\Entity
  */
 class DocumentBuilder
 {
