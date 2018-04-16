@@ -21,7 +21,7 @@
         }
     ],
     "autoload": {
-        "psr-4": { "PandaDoc\\" : "" }
+        "psr-4": { "PandaDoc\\" : "src" }
     },
     "require": {
         "guzzlehttp/guzzle": "^6.3"
