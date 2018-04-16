@@ -35,7 +35,7 @@ class Documents extends PandaDoc
    */
     public function list(array $filters = []): \stdClass
     {
-        return $this->request('GET', "/public/v1" . self::RESOURCE, $filters);
+        return $this->request('GET', self::RESOURCE, $filters);
     }
 
   /**
@@ -49,7 +49,7 @@ class Documents extends PandaDoc
    */
     public function details(string $id): \stdClass
     {
-        return $this->request('GET', "/public/v1" . self::RESOURCE . "/{$id}/details");
+        return $this->request('GET', self::RESOURCE . "/{$id}/details");
     }
 
   /**
@@ -63,7 +63,7 @@ class Documents extends PandaDoc
    */
     public function status(string $id): \stdClass
     {
-        return $this->request('GET', "/public/v1" . self::RESOURCE . "/{$id}");
+        return $this->request('GET', self::RESOURCE . "/{$id}");
     }
 
   /**
@@ -81,7 +81,7 @@ class Documents extends PandaDoc
 
 //        $path = "{$destination}/{$document->name}.pdf";
 
-        return $this->request('GET', "/public/v1" . self::RESOURCE . "/{$id}/download", ['save_to' => $destination]);
+        return $this->request('GET', self::RESOURCE . "/{$id}/download", ['save_to' => $destination]);
     }
 
   /**
@@ -95,7 +95,7 @@ class Documents extends PandaDoc
    */
     public function createFromTemplate(DocumentBuilder $document): \stdClass
     {
-        return $this->request('POST', "/public/v1" .self::RESOURCE, ['json' => $document->getData()]);
+        return $this->request('POST', self::RESOURCE, ['json' => $document->getData()]);
     }
 
   /**
@@ -128,7 +128,7 @@ class Documents extends PandaDoc
     {
         return $this->request(
             'POST',
-            "/public/v1" . self::RESOURCE . "/{$id}/send",
+             self::RESOURCE . "/{$id}/send",
             [
             'json' => [
                 'message' => $message,
@@ -153,7 +153,7 @@ class Documents extends PandaDoc
     {
         return $this->request(
             'POST',
-            "/public/v1" . self::RESOURCE . "/{$id}/session",
+            self::RESOURCE . "/{$id}/session",
             [
             'json' => [
                 'recipient' => $recipient,

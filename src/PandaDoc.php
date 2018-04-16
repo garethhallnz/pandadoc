@@ -18,7 +18,14 @@ abstract class PandaDoc
    *
    * @var string
    */
-    protected $endpoint = 'https://api.pandadoc.com';
+    const ENDPOINT = 'https://api.pandadoc.com/public/';
+
+    /**
+     * API version.
+     *
+     * @var string
+     */
+    const API_VERSION = 'v1';
 
   /**
    * API access token.
@@ -105,15 +112,18 @@ abstract class PandaDoc
    * Makes a request to the PandaDoc API using the Guzzle HTTP client.
    *
    * @param $method
-   * @param string $uri
+   * @param string $resource
    * @param array $options
    * @return mixed
    * @throws PandaDocAPIException
    *
    * @see PandaDoc::request()
    */
-    public function handleRequest(string $method, string $uri, array $options = []): \stdClass
+    public function handleRequest(string $method, string $resource, array $options = []): ?\stdClass
     {
+
+        $uri = self::ENDPOINT . self::API_VERSION . $resource;
+
         try {
             $request = $this->client->request($method, $uri, $options);
             $data = $request->getBody();
