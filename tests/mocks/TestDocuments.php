@@ -1,6 +1,6 @@
 <?php
 
-namespace PandaDoc\Tests;
+namespace PandaDoc\Tests\Mock;
 
 use PandaDoc\Documents;
 

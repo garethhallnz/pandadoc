@@ -4,6 +4,8 @@ namespace PandaDoc\Tests;
 
 use PandaDoc\Documents;
 use PandaDoc\Entity\DocumentBuilder;
+use PandaDoc\Tests\Mock\TestDocuments;
+use PandaDoc\Tests\Mock\TestHttpClient;
 use PHPUnit\Framework\TestCase;
 
 class DocumentsTest extends TestCase

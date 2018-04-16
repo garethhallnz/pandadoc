@@ -3,6 +3,7 @@
 namespace PandaDoc\Tests;
 
 use PandaDoc\Templates;
+use PandaDoc\Tests\Mock\TestHttpClient;
 use PHPUnit\Framework\TestCase;
 
 /**

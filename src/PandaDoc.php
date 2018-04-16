@@ -50,7 +50,12 @@ abstract class PandaDoc
     public function __construct($token = '', Client $client = null)
     {
         $this->token = $token;
-        $this->client = new Client();
+
+        if (empty($client)) {
+            $this->client = new Client();
+        } else {
+            $this->client = $client;
+        }
     }
 
   /**

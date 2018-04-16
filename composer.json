@@ -23,6 +23,11 @@
     "autoload": {
         "psr-4": { "PandaDoc\\" : "src" }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "PandaDoc\\Tests\\Mock\\" : "tests/mocks"
+        }
+    },
     "require": {
         "guzzlehttp/guzzle": "^6.3"
     },
