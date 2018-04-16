@@ -75,7 +75,7 @@ abstract class PandaDoc
             $options['query'] = http_build_query(['query']);
         }
 
-        return $this->handleRequest($method, $this->endpoint . $resource, $options);
+        return $this->handleRequest($method, $resource, $options);
     }
 
   /**
