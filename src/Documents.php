@@ -73,15 +73,13 @@ class Documents extends PandaDoc
    * @param string $destination
    *
    * @see Documents::document()
+   *
+   * @return void
    * @see https://developers.pandadoc.com/v1/reference#download-document
    */
     public function download(string $id, string $destination)
     {
-//        $document = $this->details($id);
-
-//        $path = "{$destination}/{$document->name}.pdf";
-
-        return $this->request('GET', self::RESOURCE . "/{$id}/download", ['save_to' => $destination]);
+        $this->request('GET', self::RESOURCE . "/{$id}/download", ['save_to' => $destination]);
     }
 
   /**
@@ -128,12 +126,12 @@ class Documents extends PandaDoc
     {
         return $this->request(
             'POST',
-             self::RESOURCE . "/{$id}/send",
+            self::RESOURCE . "/{$id}/send",
             [
-            'json' => [
-                'message' => $message,
-                'silent' => $silent,
-            ]
+                'json' => [
+                    'message' => $message,
+                    'silent' => $silent,
+                ]
             ]
         );
     }
