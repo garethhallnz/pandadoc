@@ -54,7 +54,7 @@ class DocumentBuilder
         }
 
         if (!empty($this->meta)) {
-            $data['meta'] = $this->meta;
+            $data['metadata'] = $this->meta;
         }
 
         if (!empty($this->tokens)) {
