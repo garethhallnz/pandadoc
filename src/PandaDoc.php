@@ -69,9 +69,9 @@ abstract class PandaDoc
     public function request(string $method, string $resource, array $options = []): \stdClass
     {
         $headers = [
-        'headers' => [
-            'Authorization' => 'Bearer ' . $this->token,
-        ],
+            'headers' => [
+                'Authorization' => 'Bearer ' . $this->token,
+            ],
         ];
 
         $options = array_merge_recursive($headers, $options);
@@ -94,9 +94,9 @@ abstract class PandaDoc
     public function requestToken(string $method, string $resource, array $options = []): \stdClass
     {
         $headers = [
-        'headers' => [
-            'Content-type' => 'application/x-www-form-urlencoded',
-        ],
+            'headers' => [
+                'Content-type' => 'application/x-www-form-urlencoded',
+            ],
         ];
 
         $options = array_merge_recursive($headers, $options);
@@ -137,7 +137,6 @@ abstract class PandaDoc
 
             $data = $response->getBody();
             return json_decode($data->getContents());
-
         } catch (RequestException $e) {
             $response = $e->getResponse();
 
