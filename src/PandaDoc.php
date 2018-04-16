@@ -66,7 +66,7 @@ abstract class PandaDoc
    * @param array $options
    * @return mixed
    */
-    public function request(string $method, string $resource, array $options = []): ?\stdClass
+    public function request(string $method, string $resource, array $options = []): \stdClass
     {
         $headers = [
         'headers' => [
@@ -91,7 +91,7 @@ abstract class PandaDoc
    * @param array $options
    * @return mixed
    */
-    public function requestToken(string $method, string $resource, array $options = []): ?\stdClass
+    public function requestToken(string $method, string $resource, array $options = []): \stdClass
     {
         $headers = [
         'headers' => [
@@ -119,15 +119,25 @@ abstract class PandaDoc
    *
    * @see PandaDoc::request()
    */
-    public function handleRequest(string $method, string $resource, array $options = []): ?\stdClass
+    public function handleRequest(string $method, string $resource, array $options = []): \stdClass
     {
 
         $uri = self::ENDPOINT . self::API_VERSION . $resource;
 
         try {
-            $request = $this->client->request($method, $uri, $options);
-            $data = $request->getBody();
+            $response = $this->client->request($method, $uri, $options);
+
+            $headers = $response->getHeaders();
+
+            if (!empty($headers['Content-Type']) && in_array('application/pdf', $headers['Content-Type'])) {
+                $result = new \stdClass();
+                $result->status = 200;
+                return $result;
+            }
+
+            $data = $response->getBody();
             return json_decode($data->getContents());
+
         } catch (RequestException $e) {
             $response = $e->getResponse();
 
