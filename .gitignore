@@ -1,6 +1,6 @@
 /vendor
 composer.lock
-.index.php
+index.php
 # Ignore OS generated files
 *~
 .DS_Store*
