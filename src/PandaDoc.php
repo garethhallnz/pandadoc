@@ -84,31 +84,6 @@ abstract class PandaDoc
     }
 
   /**
-   * Makes a request for token update to the PandaDoc API.
-   *
-   * @param $method
-   * @param $resource
-   * @param array $options
-   * @return mixed
-   */
-    public function requestToken(string $method, string $resource, array $options = []): \stdClass
-    {
-        $headers = [
-            'headers' => [
-                'Content-type' => 'application/x-www-form-urlencoded',
-            ],
-        ];
-
-        $options = array_merge_recursive($headers, $options);
-
-        if (!empty($options['query'])) {
-            $options['query'] = http_build_query(['query']);
-        }
-
-        return $this->handleRequest($method, $this->endpoint . $resource, $options);
-    }
-
-  /**
    * Makes a request to the PandaDoc API using the Guzzle HTTP client.
    *
    * @param $method

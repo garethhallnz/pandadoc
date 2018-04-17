@@ -163,26 +163,4 @@ class Documents extends PandaDoc
             ]
         );
     }
-
-  /**
-   * Add data for refresh token
-   */
-    public function addData($client_id, $client_secret, $refresh_token)
-    {
-
-        return $this->requestToken(
-
-            'POST',
-            "/oauth2/access_token",
-            [
-            'body' => [
-                'grant_type'=>'refresh_token',
-                'client_id'=>$client_id,
-                'client_secret'=>$client_secret,
-                'refresh_token'=>$refresh_token,
-                'scope'=>'read+write',
-            ]
-            ]
-        );
-    }
 }
