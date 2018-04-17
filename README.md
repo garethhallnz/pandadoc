@@ -29,9 +29,9 @@ Or to install with phpunit:
 <?php
     require 'vendor/autoload.php';
     
-    $token = 'my-token';
+    $accessToken = 'your-access-token';
     
-    $documents = new Documents($token);
+    $documents = new Documents($accessToken);
     
     // List all the documents.
     $data = $documents->list();
@@ -58,13 +58,30 @@ Or to install with phpunit:
 <?php
     require 'vendor/autoload.php';
     
-    $token = 'my-token';
+    $accessToken = 'your-access-token';
     
-    $templates = new Templates($token);
+    $templates = new Templates($accessToken);
     
     // List all the templates.
     $data = $templates->list();
     
     // Show template details.
     $data =$templates->details('templateID');
+```
+
+## Refresh Access Token
+```php
+<?php
+    require 'vendor/autoload.php';
+    
+    $accessToken = 'your-access-token';
+    
+    // Refresh access token
+    $auth = new Auth();
+    $client_id = 'your-client-id';
+    $client_secret = 'your-secret';
+    $refresh_token = 'your-refresh-token';
+
+    // Show new tokens.
+    $data = $auth->refreshAccessToken($client_id, $client_secret, $refresh_token);
 ```
