@@ -79,7 +79,7 @@ class Documents extends PandaDoc
    */
     public function download(string $id, string $destination)
     {
-            $this->request('GET', self::RESOURCE . "/{$id}/download", ['save_to' => $destination]);
+            $this->request('GET', self::RESOURCE . "/{$id}/download", ['sink' => $destination]);
             $result = new \stdClass();
             $result->status = 200;
             return $result;
