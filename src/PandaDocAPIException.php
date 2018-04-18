@@ -4,6 +4,7 @@ namespace PandaDoc;
 
 use \Exception;
 use \GuzzleHttp\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Custom PandaDoc API exception.
@@ -16,7 +17,7 @@ class PandaDocAPIException extends Exception
     /**
      * @inheritdoc
      */
-    public function __construct(Response $response, Exception $previous = null)
+    public function __construct(ResponseInterface $response, Exception $previous = null)
     {
         $message = $response->getStatusCode() . ': ' . $response->getReasonPhrase();
 

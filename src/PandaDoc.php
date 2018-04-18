@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace PandaDoc;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Class PandaDoc.
@@ -112,9 +112,7 @@ abstract class PandaDoc
 
             $data = $response->getBody();
             return json_decode($data->getContents());
-        } catch (RequestException $e) {
-            $response = $e->getResponse();
-
+        } catch (GuzzleException $e) {
             throw new PandaDocAPIException($response, $e);
         }
     }
