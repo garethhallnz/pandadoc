@@ -99,9 +99,9 @@ abstract class PandaDoc
 
         $uri = self::ENDPOINT . self::API_VERSION . $resource;
 
-        try {
-            $response = $this->client->request($method, $uri, $options);
+        $response = $this->client->request($method, $uri, $options);
 
+        try {
             $headers = $response->getHeaders();
 
             if (!empty($headers['Content-Type']) && in_array('application/pdf', $headers['Content-Type'])) {

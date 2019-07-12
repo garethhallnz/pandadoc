@@ -16,6 +16,7 @@ class DocumentBuilder
     protected $template_uuid;
     protected $meta;
     protected $file;
+    protected $tags;
 
     /**
      * DocumentBuilder constructor.
@@ -60,6 +61,10 @@ class DocumentBuilder
         if (!empty($this->tokens)) {
             $data['tokens'] = $this->tokens;
         }
+        
+        if (!empty($this->tags)) {
+            $data['tags'] = $this->tags;
+        }
 
         return $data;
     }
@@ -91,6 +96,16 @@ class DocumentBuilder
     public function addField($field_name, $field_value)
     {
         $this->fields[$field_name]['value'] = $field_value;
+    }
+    
+    /**
+     * Add tag to document.
+     *
+     * @param $tag
+     */
+    public function addTag($tag)
+    {
+        $this->tags[] = $tag;
     }
 
     /**
