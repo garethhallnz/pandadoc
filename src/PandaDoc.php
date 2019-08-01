@@ -48,7 +48,7 @@ abstract class PandaDoc
    * @param Client $client
    */
     public function __construct($token = '', Client $client = null, $authType = 'OAuth')
-    {   
+    {
         $prefix = '';
 
         if ($authType === 'OAuth') {
