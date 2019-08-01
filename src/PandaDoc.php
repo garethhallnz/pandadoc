@@ -47,9 +47,19 @@ abstract class PandaDoc
    * @param string $token
    * @param Client $client
    */
-    public function __construct($token = '', Client $client = null)
-    {
-        $this->token = $token;
+    public function __construct($token = '', Client $client = null, $authType = 'OAuth')
+    {   
+        $prefix = '';
+
+        if ($authType === 'OAuth') {
+            $prefix = 'Bearer ';
+        }
+
+        if ($authType === 'API-Key') {
+            $prefix = 'API-Key ';
+        }
+
+        $this->token = $prefix . $token;
 
         if (empty($client)) {
             $this->client = new Client();
@@ -57,7 +67,7 @@ abstract class PandaDoc
             $this->client = $client;
         }
     }
-
+    
   /**
    * Makes a request to the PandaDoc API.
    *
@@ -70,7 +80,7 @@ abstract class PandaDoc
     {
         $headers = [
             'headers' => [
-                'Authorization' => 'Bearer ' . $this->token,
+                'Authorization' => $this->token,
             ],
         ];
 
