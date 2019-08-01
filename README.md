@@ -1,6 +1,6 @@
 # PHP library for PandaDoc's API
 
-[![Build Status](https://travis-ci.org/garethhallnz/pandadoc.svg?branch=master)](https://travis-ci.org/garethhallnz)
+[![Build Status](https://travis-ci.org/garethhallnz/pandadoc.svg?branch=master)](https://travis-ci.org/garethhallnz/pandadoc)
 [![License](https://poser.pugx.org/garethhallnz/pandadoc/license)](https://packagist.org/packages/garethhallnz/pandadoc)
 
 This library provides convenient wrapper functions for PandaDoc's REST API.
