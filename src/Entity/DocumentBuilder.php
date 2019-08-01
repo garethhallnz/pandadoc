@@ -17,6 +17,7 @@ class DocumentBuilder
     protected $meta;
     protected $file;
     protected $tags;
+    protected $pricing_tables;
 
     /**
      * DocumentBuilder constructor.
@@ -65,6 +66,10 @@ class DocumentBuilder
         if (!empty($this->tags)) {
             $data['tags'] = $this->tags;
         }
+        
+        if (!empty($this->pricing_tables)) {
+            $data['pricing_tables'] = $this->pricing_tables;
+        }
 
         return $data;
     }
@@ -106,6 +111,22 @@ class DocumentBuilder
     public function addTag($tag)
     {
         $this->tags[] = $tag;
+    }
+    
+    /**
+     * Add pricing table to document.
+     *
+     * @param $name
+     * @param $options
+     * @param $sections
+     */
+    public function addPricingTable($name, $options, $sections)
+    {
+        $this->pricing_tables[] = [
+            'name' => $name,
+            'options' => $options,
+            'sections' => $sections
+        ];
     }
 
     /**
